@@ -1,42 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Početna stranica</title>
-</head>
-<body>
-    <p>Username</p>
-    <img src="static/user-icon.png" alt="Logo user icon" width="70px">
-    <br>
-    <img src="static/icon.png" alt="logo home" width="70px">
-    <br>
-    <a href="/logout">Logout</a>
-    <a href="?id=1">Temperatura</a>
-    <a href="?id=2">Vlaga</a>
-    <br>
-    <table>
-        <tr>
-            <th>Vrijeme</th>
-            <th>Temperatura</th>
-            <th>Brisanje</th>
-        </tr>
-        <tr>
-            <td>Datum1</td>
-            <td>23</td>
-            <td><button>Obriši</button></td>
-        </tr>
-        <tr>
-            <td>Datum1</td>
-            <td>23</td>
-            <td><button>Obriši</button></td>
-        </tr>
-        <tr>
-            <td>Datum1</td>
-            <td>23</td>
-            <td><button>Obriši</button></td>
-        </tr>
-    </table>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="../static/styles.css">
+    </head>
+    <body>
+        <div class="glavni">
+            <header>
+                <div class="lijevi">
+                    <p>Username</p>
+                    <img src="static/user-icon.png" alt="Logo user icon" width="70px">
+                </div>
+                <img class="slika" src="static/icon.png" width="70px">
+            </header>
+            <nav>
+                <a href="Logout">Logout</a>
+                <a href="Temperatura">Temperatura</a>
+                <a href="Vlaga">Vlaga</a>
+            </nav>
+            <main>
+                <table>
+                    <thead>
+                        <th>Vrijeme</th>  
+                        <th>Temperatura</th>
+                        <th>Brisanje</th>
+                    </thead>  
+                    <tbody>
+                        <tr>
+                            <td >Datum1</td>
+                            <td >23</td>
+                            <td ><button>Obriši</button></td>
+                        </tr>
+                        <tr>
+                            <td >Datum1</td>
+                            <td >23</td>
+                            <td ><button>Obriši</button></td>
+                        </tr>
+                        <tr>
+                            <td >Datum1</td>
+                            <td >23</td>
+                            <td ><button>Obriši</button></td>
+                        </tr>
+                    </tbody>   
+                </table>
+            </main>
+        </div>
+        
 
-</body>
+
+    </body>
 </html>

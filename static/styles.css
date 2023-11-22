@@ -1,0 +1,79 @@
+body{
+    background-image: url(background.png);
+}
+
+.glavni{
+    margin: 30px 5px 0px 5px;
+    background-color: #ADADAD;
+    border-top: 3px solid #64485C;
+    border-radius: 5px 5px 0px 0px;
+}
+
+header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    }
+
+.lijevo{
+    display: flex;
+    float: left;
+    align-items: center;
+}
+
+.lijevo > p {
+    display: inline;
+    color: #64485C;
+    margin-right: 20px;
+}
+
+.slika{
+    float: right;
+    justify-self: end;
+    }
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    background-color: #3A454D;
+}
+
+a {
+    margin: 10px;
+    text-decoration: none;
+    color: white;
+    }
+
+main {
+    justify-content: center;
+    display: flex;
+}
+
+table {    
+    justify-content: center;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+td, th {
+    border: 1px solid black;
+}
+
+thead{
+
+    text-align: center;
+    padding: 8px;
+    background-color: #3A454D;
+    text-decoration: none;
+    color: white;
+}
+
+tbody{
+    background-color: #DDDDDD;
+    text-align: center;
+}
+
+tr:nth-child(even){
+    background-color: #3A454D;
+}
