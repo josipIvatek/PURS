@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{naslov}}</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='jinja.css')}}">
+    </head>
+    <body>
+        {%if test %}
+        <p>{{test}}</p>
+        {%endif%}
+        <br> 
+        {%for d in data%}
+        <p>{{d}}</p>
+        <br>
+        {%endfor%}    
+    </body>
+</html>
+    
