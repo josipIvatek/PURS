@@ -52,9 +52,16 @@ def before_request_func():
 
 @app.get('/')
 def index():
-    global temperatura
-    response = render_template('index.html', naslov='Početna stranica', username=session.get('username').capitalize(), temperatura=temperature)
-    return response, 200
+    global temperature
+    global vlage
+    id = request.args.get('id')
+    if id == '1' or id == None:
+        response = render_template('index.html', naslov='Početna stranica', username=session.get('username').capitalize(), data=temperature, tip='Temperatura')
+        return response, 20
+    if id == '2':   
+        response1 = render_template('index.html', naslov='Početna stranica', username=session.get('username').capitalize(), data=vlage, tip='Vlaga')
+        return response1, 200
+
 
 @app.get('/login')
 def login():

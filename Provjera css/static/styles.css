@@ -1,0 +1,16 @@
+body{
+    background-image: url(esport1.png);
+}
+
+upis {
+        padding: 10px;
+        text-align: center;
+        justify-content: center;
+        display: flex;
+        background-color: white;
+        border-radius: 5px 5px 5px 5px;
+        margin-top: 500px;
+        margin-bottom: 20px;
+        margin-left: 500px;
+        margin-right: 500px;
+}

@@ -11,7 +11,7 @@
             <header>
                 <div class="lijevi">
                     <p>{{username}}</p>
-                    <img src="{{url_for('static', filename='user-icpn.png')}}" alt="Logo user icon" width="70px">
+                    <img src="{{url_for('static', filename='user-icon.png')}}" alt="Logo user icon" width="70px">
                 </div>
                 <img class="slika" src="{{url_for('static', filename='icon.png')}}" alt="Icon" width="70px">
             </header>
@@ -22,34 +22,19 @@
             </nav>
             <main>
                 <table>
-                    {% block temperatura %}
                     <thead>
                         <th>Datum</th>  
-                        <th>Temperatura</th>
+                        <th>{{tip}}</th>
                     </thead>  
                     <tbody>
-                        {% for temperatura in temperature % }
+                      
+                        {%for d in data%}
                         <tr>
-                            <td >{{temperatura.datum}}</td>
-                            <td >{{temperatura.vrijednost}}</td>
+                            <td >{{d.datum}}</td>
+                            <td >{{d.vrijednost}}</td>
                         </tr>
-                        {% endfor %}
+                        {%endfor%}
                     </tbody>   
-                    {% endblock temperatura %}
-                    {% block vlaga %}
-                    <thead>
-                        <th>Datum</th>  
-                        <th>Vlaga</th>
-                    </thead>  
-                    <tbody>
-                        {% for vlaga in vlage % }
-                        <tr>
-                            <td >{{vlaga.datum}}</td>
-                            <td >{{vlaga.vrijednost}}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                    {% endblock vlaga %}
                 </table>
             </main>
         </div>
