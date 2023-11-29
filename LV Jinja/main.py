@@ -1,9 +1,45 @@
 from flask import Flask, url_for, redirect, request, make_response, render_template, session
+import jinja2
 
 app = Flask("Prva flask aplikacija")
 
+temperature = [
+    {
+        'datum': '21.2.2012',
+        'vrijednost': 12
+    },
+    {
+        'datum': '1.2.2021',
+        'vrijednost': 5
+    },
+    {
+        'datum': '7.6.2023',
+        'vrijednost': 23
+    },
+    {
+        'datum': '5.10.2023',
+        'vrijednost': 4
+    }
+]
 
-temperatura = []
+vlage = [
+     {
+        'datum': '21.2.2012',
+        'vrijednost': 61
+    },
+    {
+        'datum': '1.2.2021',
+        'vrijednost': 55
+    },
+    {
+        'datum': '7.6.2023',
+        'vrijednost': 53
+    },
+    {
+        'datum': '5.10.2023',
+        'vrijednost': 34
+    }
+]
 
 app.secret_key = '_5#y2L"F4Q8z-n-xec]/'
 
@@ -16,12 +52,13 @@ def before_request_func():
 
 @app.get('/')
 def index():
-    response = render_template('index.html')
+    global temperatura
+    response = render_template('index.html', naslov='Početna stranica', username=session.get('username').capitalize(), temperatura=temperature)
     return response, 200
 
 @app.get('/login')
 def login():
-    response = render_template('login.html')
+    response = render_template('login.html', naslov='Stranica za prijavu')
     return response, 200
 
 @app.get('/logout')
@@ -38,8 +75,7 @@ def check():
         session['username'] = username
         return redirect(url_for('index'))
     else:
-        return redirect(url_for('login'))
-
+        return render_template('login.html', naslov='Stranica za prijavu', poruka='Uneseni su pogresni podaci')
 
 @app.post('/temperatura')
 def rect():

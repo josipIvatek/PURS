@@ -3,47 +3,53 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <link rel="stylesheet" href="../static/styles.css">
+        <title>{{naslov}}</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
     </head>
     <body>
         <div class="glavni">
             <header>
                 <div class="lijevi">
-                    <p>Username</p>
-                    <img src="static/user-icon.png" alt="Logo user icon" width="70px">
+                    <p>{{username}}</p>
+                    <img src="{{url_for('static', filename='user-icpn.png')}}" alt="Logo user icon" width="70px">
                 </div>
-                <img class="slika" src="static/icon.png" width="70px">
+                <img class="slika" src="{{url_for('static', filename='icon.png')}}" alt="Icon" width="70px">
             </header>
             <nav>
-                <a href="Logout">Logout</a>
-                <a href="Temperatura">Temperatura</a>
-                <a href="Vlaga">Vlaga</a>
+                <a href="{{url_for('logout')}}">Logout</a>
+                <a href="?id=1">Temperatura</a>
+                <a href="?id=2">Vlaga</a>
             </nav>
             <main>
                 <table>
+                    {% block temperatura %}
                     <thead>
-                        <th>Vrijeme</th>  
+                        <th>Datum</th>  
                         <th>Temperatura</th>
-                        <th>Brisanje</th>
                     </thead>  
                     <tbody>
+                        {% for temperatura in temperature % }
                         <tr>
-                            <td >Datum1</td>
-                            <td >23</td>
-                            <td ><button>Obriši</button></td>
+                            <td >{{temperatura.datum}}</td>
+                            <td >{{temperatura.vrijednost}}</td>
                         </tr>
-                        <tr>
-                            <td >Datum1</td>
-                            <td >23</td>
-                            <td ><button>Obriši</button></td>
-                        </tr>
-                        <tr>
-                            <td >Datum1</td>
-                            <td >23</td>
-                            <td ><button>Obriši</button></td>
-                        </tr>
+                        {% endfor %}
                     </tbody>   
+                    {% endblock temperatura %}
+                    {% block vlaga %}
+                    <thead>
+                        <th>Datum</th>  
+                        <th>Vlaga</th>
+                    </thead>  
+                    <tbody>
+                        {% for vlaga in vlage % }
+                        <tr>
+                            <td >{{vlaga.datum}}</td>
+                            <td >{{vlaga.vrijednost}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    {% endblock vlaga %}
                 </table>
             </main>
         </div>
