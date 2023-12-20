@@ -1,28 +1,11 @@
 from flask import Flask, Response, render_template, request, make_response, session, redirect, url_for, g
 import MySQLdb
+import jinja2
 
 app = Flask("Prva flask aplikacija")
 
 app.secret_key = '_5#y2L"F4Q8z-n-xec]/'
 
-temperature = [
-    {
-        'datum': '21.2.2012',
-        'vrijednost': 12
-    },
-    {
-        'datum': '1.2.2021',
-        'vrijednost': 5
-    },
-    {
-        'datum': '7.6.2023',
-        'vrijednost': 23
-    },
-    {
-        'datum': '5.10.2023',
-        'vrijednost': 4
-    }
-]
 
 vlage = [
      {
@@ -45,12 +28,13 @@ vlage = [
 
 @app.get('/')
 def index():
-    global temperature
     global vlage
+    g.cursor.execute(render_template('get_table.sql', table = 'temperatura'))
     id = request.args.get('id')
+    temperature = g.cursor.fetchall()
     if id == '1' or id == None:
         response = render_template('index.html', naslov='Početna stranica', username=session.get('username').capitalize(), data=temperature, tip='Temperatura')
-        return response, 20
+        return response, 200
     if id == '2':   
         response1 = render_template('index.html', naslov='Početna stranica', username=session.get('username').capitalize(), data=vlage, tip='Vlaga')
         return response1, 200
@@ -78,14 +62,19 @@ def check():
         return render_template('login.html', naslov='Stranica za prijavu', poruka='Uneseni su pogresni podaci')
 
 @app.post('/temperatura')
-def rect():
-    temp = request.json.get('temperatura')
-    if temp is not None:
-        global temperatura
-        temperatura.append(temp)
-        return 'Uspješno ste upisali', 201
+def put_temperatura():
+    global temperatura
+    response = make_response()
+    if request.json.get('temperatura') is not None:
+        query = render_template('writeTemperature.sql', value=request.json.get('temperatura'))
+        g.cursor.execute(query)
+        response.data = 'Uspješno ste postavili temperaturu'
+        response.status_code = 201
     else:
-        return 'Niste upisali ispravan ključ', 404
+        response.data = 'Niste napisali ispravan ključ'
+        response.status_code = 404
+        return response
+
 
 @app.get('/temperatura')
 def last():
@@ -116,4 +105,6 @@ def after_request_func(response):
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)
+
+
 
